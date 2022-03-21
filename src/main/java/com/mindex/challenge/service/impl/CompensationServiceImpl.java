@@ -22,15 +22,17 @@ public class CompensationServiceImpl implements CompensationService {
     private CompensationRepository compensationRepository;
 
     /**
-     * Creates and inserts compensation for shared employee
+     * Creates and insert compensation for shared employee
      * @param compensation  Compensation Object
      * @return  Inserted Compensation
      */
     @Override
     public Compensation create(Compensation compensation) {
-
+        //Get information of employee by id
         Employee employee = employeeService.read(compensation.getEmployee().getEmployeeId());
+        //Setting the compensation of employee
         compensation.setEmployee(employee);
+        //Inserting compensation in repository
         compensationRepository.insert(compensation);
         return compensation;
     }
@@ -42,9 +44,12 @@ public class CompensationServiceImpl implements CompensationService {
      */
     @Override
     public Compensation read(String id) {
+        //Get information of employee by id
         Employee employee = employeeService.read(id);
-        Compensation compensation = compensationRepository.findByEmployee(employee);
+        //Finding compensation of the shared employee
+        Compensation compensation = compensationRepository.findCompensationByEmployee(employee);
 
+        //If null then throw an error
         if (compensation == null) {
             throw new RuntimeException("Invalid employeeId: " + id);
         }
