@@ -50,12 +50,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
-
+    /**
+     * This function finds the number of reports for an employee using DFS
+     * @param employeeId   id of the employee
+     * @return   number of report
+     */
     @Override
     public int totalReports(String employeeId) {
+        //Count to store number of reports
         int totalCount = 0;
+        //Getting employee details by id
         Employee employee = this.read(employeeId);
+        //Storing all reports of employee
         List<Employee> reportees = employee.getDirectReports();
+        //If there are reports for an employee then traversing the list
+        //to find all reports of employee in list by dfs
         if(reportees != null) {
             for(Employee e: reportees)
                 totalCount += 1 + totalReports(e.getEmployeeId());
