@@ -42,7 +42,7 @@ public class CompensationServiceImpl implements CompensationService {
      */
     @Override
     public Compensation read(String id) {
-        Employee employee = employeeService.read(employeeId);
+        Employee employee = employeeService.read(id);
         Compensation compensation = compensationRepository.findByEmployee(employee);
 
         if (compensation == null) {

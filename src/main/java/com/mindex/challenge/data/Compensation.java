@@ -6,7 +6,6 @@ import java.time.Instant;
 public class Compensation {
     private Employee employee;
     private int salary;
-    private String effectiveDate;
     private Instant effectiveDate;
 
     public Compensation() {
@@ -20,7 +19,7 @@ public class Compensation {
         return this.salary;
     }
 
-    public String getEffectiveDate() {
+    public Instant getEffectiveDate() {
         return this.effectiveDate;
     }
 
@@ -32,7 +31,7 @@ public class Compensation {
         this.salary = salary;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
+    public void setEffectiveDate(Instant effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 
